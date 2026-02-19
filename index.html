@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Computacion Intermedia - 2026</title>
+  <style>
+    body {
+      background-color: white;
+      color: black;
+      font-family: "Trebuchet MS", sans-serif;
+    }
+    a:link {
+      color: #FF6600;
+    }
+    a:visited, a:active {
+      color: #0099CC;
+    }
+    h1 {
+      font-size: 3em;
+      text-align: center;
+    }
+    h2 {
+      font-size: 1.5em;
+      text-align: center;
+    }
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    p {
+      max-width: 800px;
+      margin: 20px auto;
+      line-height: 1.6;
+    }
+    
+    ol {
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.6;
+    }
+
+    ul {
+    max-width: 800px;
+    margin: 20px auto;
+    line-height: 1.6;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1><b>Computación Intermedia</b></h1>
+  <h2>FCIEN (2026-1)</h1>
+
+
+ <p>El objetivo del curso es presentar los dos aspectos fundamentales de la computación en matemáticas: La computación numérica (en la que se tienen representaciones aproximadas de los números) y la computación simbólica (en la que se tienen representaciones exáctas de las cantidades de interés). Cada uno de estas situaciones requiere puntos de vista entre si complementarios y el objetivo del curso es presentar estos conceptos básicos. </p>
+
+<p>Concretamente, el curso se ocupará de dos temas complementarios:<ol>
+
+<li><b>Algoritmos Básicos de Álgebra Lineal Numérica:</b>
+
+Esta área se centra en el manejo eficiente y robusto de matrices y vectores con representaciones de punto flotante. El objetivo es comprender cómo la inevitable aproximación en la computación real afecta los resultados. Se explorará el concepto de condicionamiento, que determina la estabilidad de las operaciones numéricas. Se estudiará la Factorización QR, una descomposición clave utilizada para la resolución estable de mínimos cuadrados. Finalmente, se abordará el Análisis de Componentes Principales (PCA) y el cáculo de valores singulares priorizando la estabilidad y la gestión del error numérico.</li>
+
+<li><b>Algoritmos Básicos en Álgebra Conmutativa Computacional:</b>
+Esta sección aborda la Computación Simbólica, donde el objetivo es mantener la precisión exacta al trabajar con objetos algebraicos como polinomios multivariados e ideales. El corazón de esta área es el estudio de las Bases de Gröbner, que sirven como una generalización del concepto de eliminación gaussiana para sistemas de ecuaciones polinómicas no lineales. Se introducirá el Algoritmo de Buchberger para su construcción, y se mostrará cómo estas bases permiten resolver problemas fundamentales del álgebra conmutativa y la geometría algebraica, como la pertenencia a un ideal, la resolución de sistemas polinómicos y la simplificación de expresiones simbólicas, garantizando resultados formalmente correctos.</li>
+
+</ol>
+</p>
+
+</body>
+
+  <h2>Bibliografía principal</h2>
+  <ul>
+<li><b>[W]</b> "Numerical linear algebra: An Introduction" por Holger Wedland, Cambridge University Press, 2018.</li>
+<li><b>[CLO]</b> "Ideals, Varieties, and Algorithms: An Introduction to Computational Algebraic Geometry and Commutative Algebra" por David A. Cox, John Little y Donal O'Shea, Springer, Undergraduate tests in mathematics, 2025.</li>
+</ul>
+
+
+<h2>Bibliografía Complementaria:</h2>
+  <ul>
+<li><b>[TB]</b> "Numerical Linear Algebra" de  Lloyd N. Trefethen y David Bau III</li>
+<li><b>[D]</b> "Applied Numerical Linear Algebra" de James W. Demmel</li>
+<li><b>[CLO2]</b> "Using Algebraic geometry" de David A. Cox, John Little y Donal O'Shea.</li>
+</ul>
+
+  <h2>Datos generales del Curso</h2>
+  <ul>
+    <li><b>Modalidad:</b> Presencial</li> 
+    <li><b>Responsable:</b> Mauricio Velasco (CMAT) <a href="https://mauricio-velasco.github.io/webpage/" target="_blank">[página web]</a>, e-mail: mvelasco@cmat.edu.uy </li>
+    <li><b>Ayudante:</b> Leandro Bentancur, e-mail: leandrob@cmat.edu.uy </li>
+<li><b>Requisitos previos:</b> 40 créditos de matemática de 1ro y/o 2do año de la Licenciatura en Matemática o del ciclo básico de Ingeniería.</li>
+  </ul>
+  <h2>Evaluación:</h2>
+  <ul>
+  <li> <b>CURSO TIPO 1:</b> Aprobación por curso - sin examen</li>
+  <li>El curso sera evaluado  mediante dos pruebas parciales y un proyecto longitudinal. Más precisamente,
+    <ul>
+    <li>El 50% de la nota final del curso dependerá de: Entregas de prácticos en las fechas especificadas en el calendario de abajo (25% del total) así como dos pruebas de verificación (cada una 12.5% del total) a realizarse en clase en las fechas estipuladas abajo.</li>
+    <li>El restante 50% resultará de la evaluación de un proyecto longitudinal a realizarse en grupos que consistirá de:  Elaboración y entrega de un documento escrito (30%) + Presentación oral del proyecto en clase (20%).</li>
+  </ul>
+  </li>
+  <li>Puntaje mínimo de aprobación: 50% de la nota total.</li>
+  </ul>
+
+  <h1>Cronograma (incluye prácticos) </h1>
+
+  <table>
+    <tr>
+      <th>Semana</th>
+      <th>Actividad</th>
+      <th>Referencia o Link</th>
+      <th>Info adicional</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>Preliminares A. Lineal</td>
+      <td>[W]</td>
+      <td>1.4, 1.3</td>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>[P1]</td>
+      <td>[W]</td>
+      <td>Exercises: 1.1-1.6</td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>A. Lineal Numérica</td>
+      <td>[W]</td>
+      <td>1.1, 1.5,1.6</td>
+    </tr>
+
+
+    <tr>
+      <td>3</td>
+      <td>Errores, estabilidad, condicionamiento </td>
+      <td>[W]</td>
+      <td>2.1-2.4</td>
+    </tr>
+
+    <tr>
+      <td>2,3</td>
+      <td>[P2]</td>
+      <td>[W]</td>
+      <td>Exercises: 2.1-2.7</td>
+    </tr>
+
+
+    <tr>
+      <td>4</td>
+      <td>Resolviendo Sistemas Lineales</td>
+      <td>[W]</td>
+      <td>3.1-3.4</td>
+    </tr>
+
+    <tr>
+      <td>5</td>
+      <td>Entrega [P1],[P2]</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+    <tr>
+      <td>5</td>
+      <td>Factorización QR</td>
+      <td>[W]</td>
+      <td>3.5-3.8</td>
+    </tr>
+
+
+    <tr>
+      <td>4,5</td>
+      <td>[P3]</td>
+      <td>[W]</td>
+      <td>Exercises: 3.1-3.7</td>
+    </tr>
+
+
+    <tr>
+      <td>6</td>
+      <td>Métodos iterativos</td>
+      <td>[W]</td>
+      <td>3.5-3.8</td>
+    </tr>
+
+    <tr>
+      <td>6</td>
+      <td>[P4]</td>
+      <td>[W]</td>
+      <td>Exercises: 4.1-4.8</td>
+    </tr>
+
+    <tr>
+      <td>7</td>
+      <td>Cálculo de valores propios</td>
+      <td>[W]</td>
+      <td>5.1-5.6</td>
+    </tr>
+
+    <tr>
+      <td>7</td>
+      <td>Entrega [P3],[P4]</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+
+    <tr>
+      <td>8</td>
+      <td>Parcial I</td>
+      <td></td>
+      <td></td>
+    </tr>
+
+
+  </table>
+
+
+
+</body>
+</html>
