@@ -24,13 +24,9 @@ noise = 0.001 * np.random.randn(n)
 # Valores y con ruido
 y = f(x) + noise
 
-# ------------------------------------------------------------
-# 2️⃣ Construir la matriz de evaluación para interpolación polinómica
-# ------------------------------------------------------------
-
-# ------------------------------------------------------------
-# 2️⃣ Construir la matriz de evaluación para interpolación polinómica (versión didáctica)
-# ------------------------------------------------------------
+# ------------------------------------------------------------------
+# 2️⃣ Construir la matriz de evaluación para interpolación polinomial
+# -----------------------------------------------------------------
 
 # Inicializamos una matriz n x n de ceros
 V = np.zeros((n, n))
