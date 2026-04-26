@@ -175,7 +175,7 @@ Saber demostrar que es norma y que cumple $\|Tv\|_W\leq \|T\|_{\rm op}\|v\|_V$.
 \item \emph{Números de condición y backward stability:}
 
 \begin{enumerate}
-\item Saber la definición formal de {\bf número de condición} y de {\bf número de condición absoluto} en un punto $x\in V$ de una función $f:V\rightarrow W$ entre espacios normados $V$ y $W$.
+\item Saber la definición formal de {\bf número de condición} y de {\bf número de condición absoluto} en un punto $x\in V$ de una función $f:V\rightarrow W$ entre espacios normados $V$ y $W$ (denotados $k(x,f)$ y $\tilde{k}(x,f)$ respectivamente).
 
 \item Poder demostrar formalmente que el número de condición de {\it resolver el sistema lineal} $Ax=b$ para $b$ fijo esta acotado, para una matriz invertible $A$ por $k(A):=\|A\|\|A^{-1}|$. Si $\|\bullet\|:=\|\bullet\|_{\rm op,2,2}$ poder expresar $k(A)$ en términos de los valores singulares de $A$.
 
@@ -207,27 +207,36 @@ Saber la demostración para sistemas $2\times 2$ (la idea en general es la misma
 
 
 \end{enumerate}
-\item Factorización LU:
+\item \emph{Factorización LU}:
 \begin{enumerate}
-\item Saber qué es la factorización $LU$.
-\item Cómo usarías la factorización $A=LU$ para resolver el sistema $Ax=b$? Qué puedes decir del número de condición y del error relativo de ese algoritmo?
+\item Saber qué es la factorización $LU$ de una matriz cuadrada $A$.
+\item Cómo usarías una factorización $A=LU$ conocida para resolver el sistema $Ax=b$? Qué puedes decir del número de condición y del error relativo de ese algoritmo?
 \item Demostrar que si $A$ es invertible y la factorización $LU$ existe entonces es única. Existe siempre tal factorización? De existir es siempre única (removiendo el requisito de invertibilidad de $A$)?
+
+\item Calcular la factorización $LU$ de la matriz 
+$\begin{pmatrix}
+\epsilon & 1 \\
+1 & 1
+\end{pmatrix}$
+y notar que el caso $\epsilon=0$ requiere pivoteo. Qué pasa con los números de condición de los factores cuando $\epsilon\rightarrow 0$?
+
+
 \item \emph{Criterio de existencia útil, sin pivoteo y consecuencias en matrices simétricas} Sea $A\in \RR^{n\times n}$ una matriz y sea $A_{\leq p}$ la submatriz cuadrada con índices de filas y columnas $\leq p$.
 
 \begin{theorem} Si $\det(A_p)\neq 0$ para todo $p$ entonces existe una matriz triangular inferior con diagonal de $1$'s $L$ y una matriz triangular superior $U$ tal que $A=LU$.
 \end{theorem}
 
-\begin{theorem} [Sylvester, factorización de Cholesky] Si $A$ es simétrica y $\det(A_p)>0$ para todo $p$ entonces existe una matriz invertible, triangular inferior $C$ con $A=CC^T$.
+\begin{theorem} [Sylvester + factorización de Cholesky] Si $A$ es simétrica y $\det(A_p)>0$ para todo $p$ entonces existe una única matriz invertible, triangular inferior $C$ con entradas positivas en la diagonal que cumple $A=CC^T$.
 \end{theorem}
 
-\item Saber que, por Gauss-Jordan, TODA matriz admite una descomposición $LU$ con pivoteo $PA=LU$ para alguna permutación $P$. 
+Más generalmente, si $\det(A_p)\neq 0$ para todo $p$ y $A$ es simétrica entonces existe una descomposición $A=LDL^T$ donde $L$ es triangular inferior con diagonal de unos y $D$ es una matriz diagonal.
 
-\item Calcular la factorización $LU$ de la matriz 
-\begin{pmatrix}
-\epsilon & 1 \\
-1 & 1
-\end{pmatrix}
-y notar que el caso $\epsilon=0$ requiere pivoteo. Qué pasa con los números de condición de los factores cuando $\epsilon\rightarrow 0$?
+\item Saber que, por Gauss-Jordan, TODA matriz admite una descomposición $LU$ con pivoteo $PA=LU$ para alguna permutación $P$. \emph{Dato curioso (sin dem.)} para TODA matriz simétrica $A$ existe una permutación $P$ tal que $P^T A P = LDL^T$ donde $L$ es triangular inferior con unos en la diagonal, $D$ es diagonal \emph{por bloques} donde todos los bloques tienen tamaño $2\times 2$ ó $1\times 1$). Ejemplo: $\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}$ necesita bloques $2\times 2$.
+
+
 
 \end{enumerate}
 
