@@ -235,10 +235,45 @@ Más generalmente, si $\det(A_p)\neq 0$ para todo $p$ y $A$ es simétrica entonc
 0 & 1 \\
 1 & 0
 \end{pmatrix}$ necesita bloques $2\times 2$.
+\end{enumerate}
+
+\item {\it Factorización QR}:
+\begin{enumerate}
+
+\item \begin{theorem} Una matriz $Q\in \RR^{n\times n}$ es \emph{ortogonal} si satisface cualquiera de las siguientes propiedades equivalentes:
+\begin{enumerate}
+\item $\|Qx\|_2=\|x\|_2$ para todo $x\in \RR^n$.
+\item $\langle Qx,Qy\rangle = \langle x,y\rangle $ para todos $x,y\in \RR^n$.
+\item $QQ^T=Id$ (ó equivalentemente $Q^TQ=I$). 
+\end{enumerate}
+\end{theorem}
+
+\item La {\bf reflexión de Householder} ortogonal al vector unitario $w\in \RR^n$ es la transformación
+\[H_w(x)=x-2\frac{\langle w,x\rangle}{\langle w,w\rangle} w\]
+Definimos $H_0(x):=x$. Saber demostrar sus propiedades principales, resumidas en el siguiente Lema,
+\begin{lemma} Las siguientes propiedades son ciertas si $w\neq 0$,
+\begin{enumerate}
+\item $H_w$ es la reflexión respecto al hiperplano perpendicular a $w$.
+\item $H_w$ es simétrica, ortogonal y $\det(H_w)=-1$.
+\item Para todo vector $a\in \RR^n$ existe un vector unitario $w$ ó $w=0$ tal que $H_w(a)=\|a\|e_1$ donde $e_1=(1,0,\dots,0)$ es el primer vector de la base canónica.
+\end{enumerate}
+\end{lemma}
 
 
+\item Conocer la demostración del siguiente Teorema, usando reflexiones de Householder
+\begin{theorem} Para toda matriz $A\in \RR^{m\times n}$ con $m\geq n$ existe una matriz ortogonal $Q$ y una matriz triangular superior $R$ tal que $A=QR$.
+\end{theorem}
+
+\item Saber explicar formalmente la frase {\it existe una implementación backward-stable de la factorización $QR$}.
+
+\item Poder demostrar que el número de condición de $A$ es igual al número de condición de $R$ si $A=QR$. Cómo se podría usar la factorización $QR$ para resolver el sistema lineal $Ax=b$ cuando $A$ es invertible y qué tipo de garantías sobre el error podemos demostrar?
+
+\item Suponga que $A\in \RR^{m\times n}$ con $m\leq n$. Poder explicar cómo puede usarse la factorización de $QR$ de la matriz $A$ para resolver el problema de regresión lineal
+\[\min_{x\in \RR^n} \|Ax-b\|_2^2\]
+reduciéndolo a resolver cierto sistema lineal triangular. Qué sucede si ${\rm rank}(A)<n$?
 
 \end{enumerate}
+
 
 \end{enumerate}
 
