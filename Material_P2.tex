@@ -204,10 +204,6 @@ El Teorema de Courant-Fischer tiene muchas consecuencias. Una muy significativa 
 \begin{theorem} Si $A,B$ son matrices simétricas en $\RR^{n\times n}$ entonces para cualquier $j\in \{1,\dots, n\}$ se cumple que 
 \[\left|\lambda_j(A)-\lambda_j(B)\right|\leq \|A-B\|_{\square}\]
 para cualquier norma $\|\bullet\|_{\square}$ inducida por una norma en $\RR^n$.
-
-\item Cálculo de Valores propios:
-\item El método de diagonalización de Jacobi:
-
 \end{theorem}
 
 \end{enumerate}
@@ -215,10 +211,98 @@ para cualquier norma $\|\bullet\|_{\square}$ inducida por una norma en $\RR^n$.
 }
 
 
+\item {\bf Cálculo de Valores propios de matrices simétricas}
 
+\begin{definition}
+Suponga que $A\in \RR^{n\times n}$ es una matriz simétrica y que adicionalmente \emph{tiene un valor propio dominante}, es decir que si ordenamos los valores propios en orden de magnitud decreciente (notar que este orden es diferente al de la sección anterior) entonces
+\[|\lambda_1|>|\lambda_2|\geq |\lambda_3|\dots \geq |\lambda_n|\]
+donde la primera desigualdad es estricta.
+\end{definition}
+Asumimos que $w_1,\dots, w_n$ son una base ortonormal de vectores propios de $A$ correspondientes a los valores propios $\lambda_1,\dots, \lambda_n$ respectivamente.
+
+
+Si una matriz tiene un valor propio dominante entonces este puede calcularse mediante el método de la potencia:
+\begin{definition} EL \emph{método de la potencia} se define de la siguiente manera. Sea $y_0=\sum_{j=1}^n c_jw_j$ un vector cualquiera con $c_1\neq 0$  (es decir con $\langle y_0,w_1\rangle\neq 0$) y defina $x_0:=y_0/\|y_0\|$. Luego defina iterativamente para $m=1,2,\dots$:
+\begin{enumerate}
+\item $y_m:=A(x_{m-1})$
+\item $x_m= \sigma_my_m/\|y_m\|$ donde $\sigma_m\in \{-1,1\}$ se selecciona de tal manera que $\langle x_m,x_{m-1}\rangle \geq 0$
+\end{enumerate}
+\end{definition}
+
+
+\begin{theorem} [Von Mises] Si $A$ es una matriz simétrica con un valor propio dominante $\lambda_1$ entonces las sucesiones definidas en el método de la potencia cumplen:
+\begin{enumerate}
+\item $\|y_m\|_2\rightarrow |\lambda_1|$ cuando $m\rightarrow \infty$
+\item $\sigma_m\rightarrow {\rm sign}(\lambda_1)$ para todo $m$ suficientemente grande.
+\item $x_m$ converge a un valor propio de $A$ para el valor propio $\lambda_1$
+\end{enumerate}
+\end{theorem}
+
+\begin{examplex} Supongamos que $A$ tiene un valor propio simple $\lambda_j$ y que tenemos una aproximaci\'on $\mu$ de este valor propio que está m\'as cerca de $\lambda_j$ que de ningún otro, es decir
+\[|\lambda_j-\mu|<\min_{k\neq j} |\lambda_k-\mu|.\]
+Entonces la matriz $(A-\mu I)^{-1}$ tiene valores propios $\frac{1}{\lambda_t-\mu}$ para $t=1,\dots, n$ y en particular tiene un valor propio dominante $1/(\mu-\lambda_j)$ de donde podemos calcular $\lambda_j$ aplicando el método de la potencia a la matriz $B=(A-\mu I)^{-1}$. Explícitamente, empezamos de $y_0\neq 0$ y definimos
+\[y_m = (A-\mu I)^{-1}x_{m-1}\]
+\[x_m = y_m/\|y_m\|.\]
+Notar que $y_m$ se obtiene resolviendo el sistema de ecuaciones muchas veces
+\[(A-\mu I)y_m =x_{m-1}\]
+Esto puede hacerse eficientemente mediante una factorización ($LU$ ó $QR$) de $A-\mu I$ {\bf una vez} y re-utilizándola en todas las iteraciones.
+\end{examplex}
+
+\item El método de diagonalización de Jacobi:
+
+\begin{theorem} Si $A$ es una matriz simétrica $2\times 2$ entonces existe un \'angulo $\alpha$ tal que
+\[
+\left(
+\begin{array}{cc}
+\cos(\alpha) & -\sin(\alpha)\\
+\sin(\alpha) & \cos(\alpha)\\ 
+\end{array}
+\right) A
+\left(
+\begin{array}{cc}
+\cos(\alpha) & -\sin(\alpha)\\
+\sin(\alpha) & \cos(\alpha)\\ 
+\end{array}
+\right)^{\top} = \left(\begin{array}{cc}
+d_1 & 0 \\
+0 & d_2 \\
+\end{array}
+\right).
+\]
+Si $A_{12}\neq 0$ entonces el ángulo se puede seleccionar como solución a $\cot(2\alpha)= \frac{A_{11}-A_{22}}{A_{12}}$.
+\end{theorem}
+
+Más aún si $\theta = \frac{A_{11}-A_{22}}{A_{12}}$ entonces $t=\tan(\alpha)$ satisface $t^2+2\theta t=1$  luego por la formula cuadrática podemos tomar 
+\[t=-\theta +{\rm sign}(theta)\sqrt{1+\theta^2}\] lo que nos permite escribir la matriz de rotación mediante
+\[\cos(\alpha)=\frac{1}{\sqrt{1+t^2}}=:c\]
+\[\sin(\alpha)=\frac{t}{\sqrt{1+t^2}}=:s\]
+resolviendo explícitamente el caso de diagonalización de matrices $2\times 2$.
 \end{enumerate}
 
+Para el caso general de matrices simétricas $n\times n$ introducimos la \emph{norma cuadrado de los elementos no diagonales}, que es una medida de qué tan lejos estamos de tener una matriz diagonal.
+\[N(A):=\sum_{j\neq k}|a_{jk}|^2\]
 
+\begin{definition} Dados índices $i,j$ y un ángulo $\alpha$ la rotación de givens se define por
+\[G_{ij}(\alpha):=I+(c-1)(e_je_j^\top +e_ie_i^\top)+s(e_je_i^\top-e_ie_j^\top)\]
+\end{definition}
+
+\begin{lemma} Sea $A$ una matriz simétrica con $a_{ij}\neq 0$. Si $B:=G_{ij}^{\top}(\alpha)AG_{ij}^{\top}(\alpha)$ entonces $b_{ij}=b_{ji}=0$ y $N(B)=N(A)-2|a_{ij}|^2$
+\end{lemma}
+
+El algoritmo de diagonalización de Jacobi consiste de, iterativamente:
+\begin{enumerate}
+\item Encontrar la entrada $a_{ij}$ con $i\neq j$ con máximo valor absoluto y determinar $G^{m}:=G_{ij}(\alpha)$.
+\item Definir $A^{(m+1)}:=(G^{(m)})^\top A^{(m)}G^{(m)}$.  
+\end{enumerate}
+
+\begin{theorem} [el método de diagonalización de Jacobi] Las siguientes afirmaciones son ciertas:
+\begin{enumerate}
+\item Si $B$ se obtiene de $A$ aplicando un paso del método de Jacobi entonces $N(B)\leq (1-\frac{2}{n(n-1)})N(A)$
+\item Si $\lambda_1\geq \lambda_2\dots\geq \lambda_n$ son los valores propios de $A$ y $a_{11}^{(m)}\geq \dots a_{nn}^{(m)}$ son un reordenamiento de los valores diagonales de $A^{(m)}$ entonces
+\[|\lambda_j-a_{jj}^{(m)}|\leq \sqrt{N(A^{(m)})}\]
+\end{enumerate}
+
+\end{theorem}
 
 
 
