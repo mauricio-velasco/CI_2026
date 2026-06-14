@@ -1,0 +1,380 @@
+\documentclass[12pt]{amsart}
+\pdfoutput=1
+\usepackage{latexsym, amsmath, amssymb, amsthm, bm}
+\usepackage{calrsfs}
+\usepackage{subfig}
+
+\usepackage[mathscr]{eucal}
+\usepackage{mathtools}
+\usepackage{paralist}
+\usepackage[alphabetic]{amsrefs}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage{microtype}
+\usepackage{tikz}
+\renewcommand{\baselinestretch}{1.05}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue, citecolor=blue]%
+    {hyperref}
+\linespread{1.06}
+%%--LAYOUT--------------------------------------------------------------------
+\usepackage[paperwidth=8.5in, paperheight=11in, inner=2.5cm, outer=2.5cm,% 
+    top=2.5cm, bottom=2.5cm]{geometry}
+%%--OTHER ENVIRONMENTS--------------------------------------------------------
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}[lemma]{Teorema}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{proposition}[lemma]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{remark}[lemma]{Remark}
+\newtheorem{examplex}[lemma]{Example}
+\newtheorem{procedure}[lemma]{Procedure}
+
+\newenvironment{exm}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\diamond$}\examplex}
+  {\popQED\endexamplex}
+\newtheorem{question}[lemma]{Question}
+\newtheorem{conjecture}[lemma]{Conjecture}
+\newtheorem{Construction}[lemma]{Construction}
+\newtheorem{algorithm}[lemma]{Algorithm}
+%\theoremstyle{remark}
+\newcommand{\define}[1]{{\bfseries\itshape #1}}
+%%--MATH----------------------------------------------------------------------
+\newcommand{\relphantom}[1]{\mathrel{\phantom{#1}}}
+\newcommand{\abs}[1]{\ensuremath{\left| #1 \right|}}
+%\newcommand{\norm}[1]{\ensuremath{\left\| #1 \right\|}}
+\newcommand{\ideal}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\newcommand{\coloneq}{\ensuremath{\mathrel{\mathop :}=}}
+\newcommand{\transpose}{\ensuremath{\textsf{\upshape T}}} 
+%% Blackboard bolds symbols
+\renewcommand{\AA}{\ensuremath{\mathbb{A}}} 
+\newcommand{\CC}{\ensuremath{\mathbb{C}}} 
+\newcommand{\kk}{\ensuremath{\Bbbk}} 
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\PP}{\ensuremath{\mathbb{P}}} 
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}} 
+\newcommand{\RR}{\ensuremath{\mathbb{R}}} 
+\newcommand{\EE}{\ensuremath{\mathbb{E}}} 
+
+\renewcommand{\P}{\ensuremath{P}} 
+\newcommand{\Q}{\ensuremath{Q}} 
+
+%\renewcommand{\SS}{\ensuremath{\mathbb{S}}} 
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}} 
+%% Script symbols
+\newcommand{\sC}{\ensuremath{\mathcal{C}}}
+\newcommand{\sE}{\ensuremath{\mathcal{E}}}
+\newcommand{\sF}{\ensuremath{\mathcal{F}}}
+\newcommand{\calF}{\ensuremath{\mathcal{F}}}
+\newcommand{\calL}{\ensuremath{\mathcal{L}}}
+
+\newcommand{\sH}{\ensuremath{\mathcal{H}}}
+\newcommand{\sL}{\ensuremath{\mathcal{L}}}
+\newcommand{\sO}{\ensuremath{\mathcal{O}}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\Osh}{{\mathcal O}}
+\newcommand{\Ish}{{\mathcal I}}
+\newcommand{\calI}{{\mathcal I}}
+
+%% Operators
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{Coker}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\Cox}{Cox}
+\DeclareMathOperator{\depth}{depth}
+\DeclareMathOperator{\gon}{gon}
+\DeclareMathOperator{\Grass}{Gr}
+\DeclareMathOperator{\green}{\textit{a}}
+\DeclareMathOperator{\HH}{H}
+\DeclareMathOperator{\HHH}{\mathbb{H}}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\kept}{\lambda}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\len}{\ell}
+\DeclareMathOperator{\py}{py}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\pr}{p}
+\DeclareMathOperator{\qp}{qp}
+\DeclareMathOperator{\qr}{qr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\reg}{reg}
+\DeclareMathOperator{\Sos}{\Sigma}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\sw}{sw}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\topint}{int}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\tw}{tw}
+\DeclareMathOperator{\variety}{V}
+%% Personalized comments
+\newcommand\mv[1]{{\color{blue}(MV: #1)}}
+\newcommand\mve[1]{{\color{red}(MV: #1)}}
+\newcommand\jh[1]{{\color{red}(JH: #1)}}
+
+\title{Guía de estudio II (Computación Intermedia)}
+
+\begin{document}
+\maketitle
+El objetivo de este documento es servir de guía para el estudiante en preparación para los parciales del curso.
+Los enunciados marcados con Teorema son fundamentales y hay que conocer sus demostraciones.
+
+\begin{enumerate}
+
+\item {\bf Métodos iterativos para la solución de sistemas de ecuaciones lineales y puntos fijos.}
+
+Muchos problemas en matemáticas se pueden expresar como el problema de \emph{encontrar los puntos fijos de una función $F:\RR^n\rightarrow \RR^n$}, es decir las soluciones de la ecuación $F(x)=x$. El siguiente Teorema da garantías de unicidad y también un mecanismo iterativo de construcción de puntos fijos.
+
+\begin{definition} Sea $X$ un espacio normado. Una función $F:X\rightarrow X$ es una contracci\'on si existe un número $q\in [0, 1)$ tal que $\forall x,y\in X\left(\|F(x)-F(y)\|\leq q \|x-y\|\right)$
+\end{definition}
+
+\begin{theorem}[del Punto Fijo de Banach] Si $X$ es un espacio métrico completo y $F$ es una contracción entonces:
+
+\begin{enumerate}
+\item $F$ tiene un único punto fijo $x^*\in X$.
+\item La sucesión $x_0\in X$ y $x_{j+1}:=F(x_j)$ para $j\geq 0$ converge a $x^*$ para cualquier punto inicial $x_0\in X$. 
+\item Cualquier sucesión  $(x_j)_{j\in \mathbb{N}}$ definida como en $(2)$ satisface el siguiente estimado
+\[\|x^*-x_j\|\leq \frac{q^j}{1-q}\|x_1-x_0\|\]
+\end{enumerate}
+\end{theorem}
+
+\begin{examplex}\label{Ex: linear} Suponga que $F:\RR^n\rightarrow \RR^n$ es la transformación lineal afín $F(x)=Cx+c$ donde $C$ es una matriz de $n\times n$ y $c\in \RR^n$. \emph{Qué podemos decir de los puntos fijos de $F$?}
+
+Si $x,y\in \RR^n$ entonces
+\[\|F(x)-F(y)\| = \|C(x-y)\|\leq \|C\|_{\rm op} \|x-y\|\]
+luego $\|C\|_{\rm op}<1$ implica, por Teorema del punto fijo de Banach que $F$ tiene un único punto fijo y que puede obtenerse iterando $F$ a partir de cualquier punto.
+
+\end{examplex}
+
+
+El enunciado anterior se cumple para cualquier norma matricial submultiplicativa (i.e. para cualquier norma matricial $\|A\|_{\square}$ inducida por una norma vectorial en $\RR^n$) asi que es natural preguntar cuál es la norma multiplicativa más pequeña. El próximo Teorema asegura que esto es esencialmente el radio espectral.
+
+\begin{definition} El radio espectral de una matriz $A\in \CC^{n\times n}$ es $\rho(A)=\max\{|\lambda|: \lambda\in {\rm esp}(A)\}$ donde ${\rm esp}(A)$ es el conjunto de valores propios de $A$.
+\end{definition}
+
+\begin{theorem} EL radio espectral de $A\in \RR^{n\times n}$ esta dado por $\rho(A)=\inf_{ \|\bullet\|_{\square}}\|A\|_{\square}$
+donde  el ínfimo se toma sobra las normas matriciales  $\|\bullet\|_{\square}$ inducidas por alguna norma en $\RR^n$.
+\end{theorem}
+
+
+\begin{examplex} Se sigue que si $\rho(C)<1$ entonces el mapa $F$ del ejemplo~\ref{Ex: linear} es una contracción.  
+\end{examplex}
+
+\begin{examplex} {\it El método de Jacobi } Queremos resolver el sistema de ecuaciones $Ax=b$. Descomponemos $A=D+L+U$ en sus términos diagonales, estrictamente arriba y estrictamente abajo de la diagonal. Definimos $B=D$ luego $A-B=L+U$. Queremos escribir la solución $Ax=b$ como un punto fijo.
+\[Ax=(B+(A-B))x=Bx+(A-B)x=b\]
+luego, si $B$ es invertible
+\[x=B^{-1}b-B^{-1}(A-B)x\]
+es decir la solución es un punto fijo del mapa afín \[F(z)=-B^{-1}(A-B)z+B^{-1}b=-B^{-1}(L+U)z+B^{-1}b\]
+luego este tiene un único punto fijo y puede obtenerse mediante aplicación sucesiva de $F$ si $\rho(-B^{-1}(L+U))<1$. Esto se llama el \emph{método iterativo de Jacobi}
+\end{examplex}
+En algunos casos es fácil demostrar la convergencia del método de Jacobi:
+\begin{theorem} Si $A$ es estrictamente de diagonal dominante (i.e. $\forall i\left(|a_{ii}|>\sum_{j\neq i} |a_{ij}|\right)$) entonces $\rho(-B^{-1}(L+U))<1$ luego el método iterativo de Jacobi converge.
+\end{theorem}
+
+
+\item{ {\bf Teoremas de localización de valores propios}
+
+\begin{enumerate}
+\item Para matrices generales $A\in \RR^{n\times n}$:
+\begin{theorem} [de círculos de Gerschgorin] Los valores propios de $A\in \RR^{n\times n}$ estan en la unión de los discos $D_j$, $j=1,\dots n$ con
+\[D_j:=\{\lambda\in \CC: |\lambda-a_jj|\leq \sum_{k\neq j} |a_{jk}|\}\]
+\end{theorem}
+
+\begin{theorem} [uniones de círculos de Gerschgorin] Si la unión de $p$ discos $D_j$ forma un conjunto conexo $P$ que es disjunto de todos los demás entonces $P$ contiene exáctamente $p$ valores propios de $A$. En particular si todos los discos son disjuntos entonces cada disco contiene exáctamente un valor propio de $A$.
+\end{theorem}
+
+\item Para matrices {\bf simétricas} $A\in \RR^{n\times n}$. Si $A$ es una matriz simétrica entonces sus valores propios son reales y se pueden ordenar como 
+\[\lambda_1(A)\geq \lambda_2(A)\geq \dots \geq \lambda_n(A)\] 
+Especificar una matriz simétrica es lo mismo que especificar un polinomio cuadrático homogéneo (o forma cuadrática) $q(x)=x^tAx$ asi que todo invariante de $A$ debe poderse expresar en términos de la forma $q(x)$.
+
+Denotamos mediante $\mathcal{M}_j$ la colección de subespacios de dimensión $j$ de $\RR^n$. Todos los valores propios de una matriz simétrica admiten la siguiente descripción variacional
+
+\begin{theorem}[Teorema min-max de Courant-Fischer] Si $A\in \RR^{n\times n}$ es una matriz simétrica entonces para $j=1,\dots, n$ se tienen las siguientes igualdades:
+\[\lambda_j(A) = \min_{V\in \mathcal{M}_{n-j+1}}\left(\max_{x\in V,x\neq 0} \frac{x^tAx}{x^tx}\right)\]
+\[\lambda_j(A) = \max_{V\in \mathcal{M}_{j}}\left(\min_{x\in V,x\neq 0} \frac{x^tAx}{x^tx}\right)\]
+\end{theorem}
+
+El Teorema de Courant-Fischer tiene muchas consecuencias. Una muy significativa es que los valores propios \emph{de matrices simétricas} no cambian demasiado al perturbar una matriz simétrica mediante una perturbación simétrica.
+
+\begin{theorem} Si $A,B$ son matrices simétricas en $\RR^{n\times n}$ entonces para cualquier $j\in \{1,\dots, n\}$ se cumple que 
+\[\left|\lambda_j(A)-\lambda_j(B)\right|\leq \|A-B\|_{\square}\]
+para cualquier norma $\|\bullet\|_{\square}$ inducida por una norma en $\RR^n$.
+
+\item Cálculo de Valores propios:
+\item El método de diagonalización de Jacobi:
+
+\end{theorem}
+
+\end{enumerate}
+
+}
+
+
+
+\end{enumerate}
+
+
+
+
+
+\end{document}
+
+
+\item \emph{Fundamentos de Álgebra Lineal:}
+\begin{enumerate}
+\item \emph{Teorema espectral (en dim finita)}
+
+\begin{theorem}Toda matriz simétrica es ortogonalmente diagonalizable (sobre $\RR$).\end{theorem}
+Más generalmente toda matriz normal ($A\in \CC^{n\times n}$ es normal $AA^*=A^*A$) es unitariamente diagonalizable (sobre $\CC$).
+\item \emph{Descomposición en valores singulares:}
+\begin{theorem} Si $A\in \RR^{m\times n}$ entonces existen matrices ortogonales $U\in \RR^{m\times m}$ y $V\in \RR^{n\times n}$ y una matriz $\Sigma$ diagonal con entradas reales tales que:
+\[A=U\Sigma V^T\]
+\end{theorem}
+M\'as precisamente, podemos asumir que las entradas diagonales no nulas de $\Sigma$ son n\'umeros $\sigma_1\geq \dots \geq  \sigma_r>0$ donde $r={\rm rank}(A)$. Estos números se llaman los {\bf valores singulares} de $A$. 
+
+Observaciones:
+
+\begin{itemize}
+\item La demostración de existencia es constructiva (si pudiéramos calcular valores y vectores propios, lo que haremos más adelante) pues se reduce a que:
+\begin{enumerate}
+\item Las columnas de $U$ pueden ser una base ortonormal de vectores propios de $AA^T$ (con $AA^Tu_i=\sigma_i^2u_i$), extendida a una base ortonormal del espacio completo si el rango lo requiere.
+\item Las columnas de $V$ pueden ser una base ortonormal de vectores propios de $A^TA$ (con $A^tAv_i=\sigma_i^2v_i$), extendida a una base ortonormal del espacio completo si el rango lo requiere.
+\item Los valores singulares son las raíces de los valores propios no nulos de $AA^T$ \'o $A^TA$. Esto demuestra la unicidad de los valores singulares y tambien explica en qué sentido falla la unicidad de $U$ y $V$.
+\end{enumerate}
+\item $\Sigma$ es, en general una matrix rectangular del mismo formato que $A$ y sus únicas entradas no nulas estan sobre la diagonal.
+\item La descomposición de arriba permite, sumando sobre las entradas diagonales, escribir 
+\[A=\sum_{i=1}^r \sigma_i u_iv_i^t\]
+expresando $A$ como suma de $r$ matrices de rango uno.
+\item Todo lo anterior es válido sobre $\CC$, donde $A\in \CC^{m\times n}$ y las matrices $U$ y $V$ son unitarias, llevando a una descomposición 
+\[A=U\Sigma V^*\]
+\end{itemize}
+\end{enumerate}
+
+\item \emph{Normas:}
+\begin{enumerate}
+\item Conocer el enunciado de la desigualdad de Holder y poder usarla para demostrar que $\|\bullet\|_p$ es norma en $\RR^n$ para $p\geq 1$. Saber demostrar:
+
+\begin{theorem}
+En un espacio vectorial de dimensión finita, todo par de normas son equivalentes.
+\end{theorem}
+
+
+\item \emph{Normas inducidas en espacios de matrices} Definición de la norma inducida sobre operadores $T:V\rightarrow W$ por normas $\|\cdot\|_V$ y $\|\cdot\|_W$ en $V$ y $W$
+\[\|T\|_{\rm op}:=\sup_{v\in V\setminus\{0\}} \frac{\|Tv\|_W}{\|v\|_V}.\] 
+Saber demostrar que es norma y que cumple $\|Tv\|_W\leq \|T\|_{\rm op}\|v\|_V$. 
+
+\item Saber calcular $\|T\|_{\rm op,1,1}$, $\|T\|_{\rm op,\infty,\infty}$ en términos de las entradas de $T$ y expresar $\|T\|_{\rm op,2,2}$ en términos de valores singulares.  
+\end{enumerate}
+
+
+\item \emph{Números de condición y backward stability:}
+
+\begin{enumerate}
+\item Saber la definición formal de {\bf número de condición} y de {\bf número de condición absoluto} en un punto $x\in V$ de una función $f:V\rightarrow W$ entre espacios normados $V$ y $W$ (denotados $k(x,f)$ y $\tilde{k}(x,f)$ respectivamente).
+
+\item Poder demostrar formalmente que el número de condición de {\it resolver el sistema lineal} $Ax=b$ para $b$ fijo esta acotado, para una matriz invertible $A$ por $k(A):=\|A\|\|A^{-1}|$. Si $\|\bullet\|:=\|\bullet\|_{\rm op,2,2}$ poder expresar $k(A)$ en términos de los valores singulares de $A$.
+
+\item Entender la definición de backward-stable:
+Para $\epsilon_0>0$ decimos que $\tilde{f}:V\rightarrow W$ es $\epsilon_0$-backward-stable con respecto a $f:V\rightarrow W$ si 
+$\forall x\in V \exists \tilde{x}$ que cumple:
+\begin{enumerate}
+\item $\tilde{f}(x)=f(\tilde{x})$ 
+\item $\|x-\tilde{x}\|\leq \epsilon_0\|x\|$
+\end{enumerate}
+
+\item Poder demostrar:
+\begin{enumerate}
+\item  Que una implementación del producto de números $x\ast y$ que garantice 
+\[x\ast y = xy(1+\epsilon_0)\]
+para todos $x,y$ es $\epsilon_0$-backward stable.
+\item Que el producto interno de vectores en $\RR^n$, implementado con operaciones de producto y suma como las anteriores es backward-stable para algún múltiplo explícito de $\epsilon_0$ (para todo $\epsilon_0$ suficientemente pequeño). 
+
+\item \emph{Uso de backward stability:}
+\begin{theorem} Si $\tilde{f}$ es una implementación $\epsilon_0$-backward stable de $f$ entonces el error relativo en $x$ esta controlado por el número de condición $K(x,f)$  de $f$ en $x$. Más precisamente, si $f(x)\neq 0$ tenemos la siguiente desigualdad
+\[\frac{\|\tilde{f}(x)-f(x)\|}{\|f(x)\|}\leq K(x,f)\epsilon_0\]
+\end{theorem}
+
+\item \begin{theorem} Resolver un sistema lineal triangular inferior mediante sustitución hacia atrás es backward-stable.
+\end{theorem} 
+Saber la demostración para sistemas $2\times 2$ (la idea en general es la misma y solo requiere más cálculos)
+
+\end{enumerate}
+
+
+\end{enumerate}
+\item \emph{Factorización LU}:
+\begin{enumerate}
+\item Saber qué es la factorización $LU$ de una matriz cuadrada $A$.
+\item Cómo usarías una factorización $A=LU$ conocida para resolver el sistema $Ax=b$? Qué puedes decir del número de condición y del error relativo de ese algoritmo?
+\item Demostrar que si $A$ es invertible y la factorización $LU$ existe entonces es única. Existe siempre tal factorización? De existir es siempre única (removiendo el requisito de invertibilidad de $A$)?
+
+\item Calcular la factorización $LU$ de la matriz 
+$\begin{pmatrix}
+\epsilon & 1 \\
+1 & 1
+\end{pmatrix}$
+para $\epsilon\neq 0$. Notar la descomposición $LU$ no existe cuando $\epsilon=0$. Qué pasa con los números de condición de los factores $L$ y $U$ cuando $\epsilon\rightarrow 0$?
+
+
+\item \emph{Criterio de existencia útil, sin pivoteo y consecuencias en matrices simétricas} Sea $A\in \RR^{n\times n}$ una matriz y sea $A_{\leq p}$ la submatriz cuadrada con índices de filas y columnas $\leq p$.
+
+\begin{theorem} Si $\det(A_p)\neq 0$ para todo $p$ entonces existe una matriz triangular inferior con diagonal de $1$'s $L$ y una matriz triangular superior $U$ tal que $A=LU$.
+\end{theorem}
+
+\begin{theorem} [Sylvester + factorización de Cholesky] Si $A$ es simétrica y $\det(A_p)>0$ para todo $p$ entonces existe una única matriz invertible, triangular inferior $C$ con entradas positivas en la diagonal que cumple $A=CC^T$.
+\end{theorem}
+
+Más generalmente, si $\det(A_p)\neq 0$ para todo $p$ y $A$ es simétrica entonces existe una descomposición $A=LDL^T$ donde $L$ es triangular inferior con diagonal de unos y $D$ es una matriz diagonal.
+
+\item Saber que, por Gauss-Jordan, TODA matriz admite una descomposición $LU$ con pivoteo $PA=LU$ para alguna permutación $P$. \emph{Dato curioso (sin dem.)} para TODA matriz simétrica $A$ existe una permutación $P$ tal que $P^T A P = LDL^T$ donde $L$ es triangular inferior con unos en la diagonal, $D$ es diagonal \emph{por bloques} donde todos los bloques tienen tamaño $2\times 2$ ó $1\times 1$). Ejemplo: $\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}$ necesita bloques $2\times 2$.
+\end{enumerate}
+
+\item {\it Factorización QR}:
+\begin{enumerate}
+
+\item \begin{theorem} Una matriz $Q\in \RR^{n\times n}$ es \emph{ortogonal} si satisface cualquiera de las siguientes propiedades equivalentes:
+\begin{enumerate}
+\item $\|Qx\|_2=\|x\|_2$ para todo $x\in \RR^n$.
+\item $\langle Qx,Qy\rangle = \langle x,y\rangle $ para todos $x,y\in \RR^n$.
+\item $QQ^T=Id$ (ó equivalentemente $Q^TQ=I$). 
+\end{enumerate}
+\end{theorem}
+
+\item La {\bf reflexión de Householder} ortogonal al vector unitario $w\in \RR^n$ es la transformación
+\[H_w(x)=x-2\frac{\langle w,x\rangle}{\langle w,w\rangle} w\]
+Definimos $H_0(x):=x$. Saber demostrar sus propiedades principales, resumidas en el siguiente Lema,
+\begin{lemma} Las siguientes propiedades son ciertas si $w\neq 0$,
+\begin{enumerate}
+\item $H_w$ es la reflexión respecto al hiperplano perpendicular a $w$.
+\item $H_w$ es simétrica, ortogonal y $\det(H_w)=-1$.
+\item Para todo vector $a\in \RR^n$ existe un vector unitario $w$ ó $w=0$ tal que $H_w(a)=\|a\|e_1$ donde $e_1=(1,0,\dots,0)$ es el primer vector de la base canónica.
+\end{enumerate}
+\end{lemma}
+
+
+\item Conocer la demostración del siguiente Teorema, usando reflexiones de Householder
+\begin{theorem} Para toda matriz $A\in \RR^{m\times n}$ con $m\geq n$ existe una matriz ortogonal $Q$ y una matriz triangular superior $R$ tal que $A=QR$.
+\end{theorem}
+
+\item Saber explicar formalmente la frase {\it existe una implementación backward-stable de la factorización $QR$}.
+
+\item Poder demostrar que el número de condición de $A$ es igual al número de condición de $R$ si $A=QR$. Cómo se podría usar la factorización $QR$ para resolver el sistema lineal $Ax=b$ cuando $A$ es invertible y qué tipo de garantías sobre el error podemos demostrar?
+
+\item Suponga que $A\in \RR^{m\times n}$ con $m\leq n$. Poder explicar cómo puede usarse la factorización de $QR$ de la matriz $A$ para resolver el problema de regresión lineal
+\[\min_{x\in \RR^n} \|Ax-b\|_2^2\]
+reduciéndolo a resolver cierto sistema lineal triangular. Qué sucede si ${\rm rank}(A)<n$?
+
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
